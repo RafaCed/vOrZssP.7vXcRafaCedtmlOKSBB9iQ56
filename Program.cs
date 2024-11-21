@@ -11,23 +11,14 @@ namespace discountCalculator
     {
         static void Main(string[] args)
         {
-          
-
-            Console.Write("Please enter the original price of the product: ");
+           Console.Write("Please enter the original price of the product: ");
             string priceInput = Console.ReadLine();
-
-
-           
-
             if (!double.TryParse(priceInput, out double originalPrice) || originalPrice <= 0)
            
             {
                 Console.WriteLine("Invalid price. Please enter a positive number.");
-                return; 
-                
+                return;    
             }
-
-
 
             Console.Write("Please enter the discount type (student, senior, none): ");
             string discountType = Console.ReadLine().ToLower();
