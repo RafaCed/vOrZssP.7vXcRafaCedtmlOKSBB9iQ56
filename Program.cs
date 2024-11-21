@@ -1,65 +1,84 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace uppgift8
+namespace discountCalculator
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.Write("Please enter your age: ");
-            string ageInput = Console.ReadLine();
+          
 
-            int age = Convert.ToInt32(ageInput);
-            
-            const int LegalAge = 18;
-            if (age >= LegalAge)
+            Console.Write("Please enter the original price of the product: ");
+            string priceInput = Console.ReadLine();
+
+
+           
+
+            if (!double.TryParse(priceInput, out double originalPrice) || originalPrice <= 0)
+           
             {
-                Console.WriteLine("You're an adult. ");
-            }
-            else
-            {
-                Console.WriteLine("You're a minor. ");
+                Console.WriteLine("Invalid price. Please enter a positive number.");
+                return; 
+                
             }
 
-            int Counter = 1;
-            while (Counter <= 5)
+
+
+            Console.Write("Please enter the discount type (student, senior, none): ");
+            string discountType = Console.ReadLine().ToLower();
+            double discountPercentage;
+            switch (discountType)
+
             {
-                Console.WriteLine("Counter: " + Counter);
-                Counter++;
-            }
-            
-            switch (Counter) 
-            {
-                case 1:
-                    Console.WriteLine("One");
+
+                case "student":
+
+                    discountPercentage = 0.15;
+
                     break;
-                case 2:
-                    Console.WriteLine("Two");
+
+                case "senior":
+
+                    discountPercentage = 0.20;
+
                     break;
-                case 3:
-                    Console.WriteLine("Three");
+
+                case "none":
+
+                    discountPercentage = 0.00;
+
                     break;
-                case 4:
-                    Console.WriteLine("Four");
-                    break;
-                case 5:
-                    Console.WriteLine("Five");
-                    break;
+
                 default:
-                    Console.WriteLine("Invalid number");
-                    break;
 
+                    Console.WriteLine("Invalid discount type! Please enter 'student', 'senior', or 'none'.");
+
+                    return; 
+            }
+
+            double discountAmount = originalPrice * discountPercentage;
+            double finalPrice = originalPrice - discountAmount;
+
+            Console.WriteLine($"Original Price: ${originalPrice:F2}");
+
+            Console.WriteLine($"Discount Type: {char.ToUpper(discountType[0]) + discountType.Substring(1)}");
+
+            Console.WriteLine($"Discount Amount: ${discountAmount:F2}");
+
+            Console.WriteLine($"Final Price: ${finalPrice:F2}");
+
+            if (finalPrice < 50)
+
+            {
+
+                Console.WriteLine("This is a great deal!");
 
             }
-         var name = "John";
-         Console.WriteLine($"Welcome {name}! The value of counter after the loop is {Counter}.");
-
-
-
         }
     }
 }
