@@ -1,0 +1,7 @@
+C:\Users\ceder\Desktop\Csharp\uppgift1\bin\Debug\uppgift1.exe.config
+C:\Users\ceder\Desktop\Csharp\uppgift1\bin\Debug\uppgift1.exe
+C:\Users\ceder\Desktop\Csharp\uppgift1\bin\Debug\uppgift1.pdb
+C:\Users\ceder\Desktop\Csharp\uppgift1\obj\Debug\uppgift1.csproj.AssemblyReference.cache
+C:\Users\ceder\Desktop\Csharp\uppgift1\obj\Debug\uppgift1.csproj.CoreCompileInputs.cache
+C:\Users\ceder\Desktop\Csharp\uppgift1\obj\Debug\uppgift1.exe
+C:\Users\ceder\Desktop\Csharp\uppgift1\obj\Debug\uppgift1.pdb
