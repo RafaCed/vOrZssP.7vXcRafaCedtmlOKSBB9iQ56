@@ -4,17 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace uppgift3
+namespace uppgift4
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Please enter your name: ");
-            //string name = Console.ReadLine();
-            Console.ReadLine();
-            Console.Write("Thank you! ");
             
+            Console.Write("Enter your age: ");
+            string ageInput = Console.ReadLine();
+            int age = Convert.ToInt32(ageInput);
+
+            if (age >= 18)
+            {
+                Console.WriteLine("You can vote! ");
+            }
+            if (age <= 18) 
+            {
+                Console.WriteLine("You can't vote! ");
+            }
+
         }
     }
 }
