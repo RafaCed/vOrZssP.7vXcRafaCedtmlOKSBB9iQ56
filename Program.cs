@@ -4,21 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace uppgift1
+namespace uppgift2
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            string myName = "raf";
-            Console.WriteLine(myName);
+            string textNum = "98445";
+            int num = Convert.ToInt32(textNum);
 
-            int myNum1 = 1;
-            int myNum2 = 2;
-
-            Console.WriteLine(myNum1);
-            Console.WriteLine(myNum2); 
-
+            Console.WriteLine(num);
         }
     }
 }
