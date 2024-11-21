@@ -4,44 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace uppgift5
+namespace uppgift6
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter a grade: ");
-            int grade = Convert.ToInt32(Console.ReadLine());
+            Console.Write("How many time do you want to loop?: ");
+            int loopCounter = Convert.ToInt32(Console.ReadLine());
 
-
-         
-
-
-            switch (grade)
+            if (loopCounter <= 0) 
             {
-                case 5:
-                    Console.WriteLine("Grade 5");
-                    break;
-                case 4:
-                    Console.WriteLine("Grade 4");
-                    break;
-                case 3:
-                    Console.WriteLine("Grade 3");
-                    break;
-                case 2:
-                    Console.WriteLine("Grade 2");
-                    break;
-                case 1:
-                    Console.WriteLine("Grade 1");
-                    break;
-                case 0:
-                    Console.WriteLine("Failed");
-                    break;
-
-                default:
-                    Console.WriteLine("Invalid, enter a value between 0 and 5");
-                    break;
+                Console.WriteLine("Enter a value above 0! ");
             }
+            else 
+            {
+                for (int i = 0; i < loopCounter; i++)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+           
+            Console.Write("Loop Finished! ");
             Console.ReadLine();
         }
     }
