@@ -4,56 +4,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace uppgift9
+namespace uppgift10
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             //1
-            int num1 = 10;
-            int num2 = 20;
-            int num3 = 30;
-            int num4 = num1;
 
+            int num1 = 34;
+            int num2 = 12;
+            int num3 = 63;
+            int num4 = 96;
+            int num5 = 123;
+            int num6 = 73;
+            
             //2
-            bool isTrue = true;
-           
-            //3
-            // a)
-            bool resultAnd = isTrue && (num1 > num3 && num2 > num4);
-            Console.WriteLine($"Logical AND (isTrue && (num1 > num3 && num > num4)): \n{resultAnd}");
-            //b
-            bool resultOr = isTrue || (num1 < num3 || num2 > num4);
-            Console.WriteLine($"Logical OR (isTrue && (num1 > num3 && num > num4)): \n{resultAnd}");
-            //c
-            bool resultNot = !isTrue;
-            Console.WriteLine($"Logical NOT (!isTrue): \n{resultNot}");
-            Console.WriteLine();
-            //4
+
             //a)
-            bool comparison1 = num1 > num3;
-            Console.WriteLine($"Is num1 greater than num3? \n{comparison1}");
+            int sum = num1 + num2;
+            Console.WriteLine("The sum of " + num1 + " and " + num2 + " is: " + sum);
+
             //b)
-            bool comparison2 = num2 < num4;
-            Console.WriteLine($"Is num2 less than num4? \n{comparison2}");
+            int product = num3 * num4;
+            Console.WriteLine("The product of " + num3 + " and " + num4 + " is: " + product);
+
             //c)
-            bool comparison3 = num1 == num4;
-            Console.WriteLine($"Is num1 equal to num4? \n{comparison3}");
-            //d)
-            bool comparison4 = num2 != num3;
-            Console.WriteLine($"Is num2 equal to num3? \n{comparison4}");
-            Console.WriteLine();
+            int remainder = num5 % num6;
+            Console.WriteLine("The remainder of " + num5 + " and " + num6 + " is: " + remainder);
 
-            //5
-            //a)
-            bool expression1 = (num1 > num3) && (num2 < num4);
-            //b
-            bool expression2 = (num1 < num3) || (num2 > num4);
+            //3
+            Console.WriteLine("\nIncrement and Decrement operations on num6");
 
-            Console.WriteLine($"Expression1 ((num1 > num3) && (num2 < num4)): {expression1}");
-            Console.WriteLine($"Expression2 ((num1 < num3) || (num2 > num4)): {expression2}");
+            Console.WriteLine("\nPostfix increment: num6 = " + num6++);
+            Console.WriteLine("After Postfix Increment: num6 = " + num6);
 
+            Console.WriteLine("\nPrefix increment: num6 = " + ++num6);
+
+            Console.WriteLine("\nPostfix increment: num6 = " + num6--);
+            Console.WriteLine("After Postfix Increment: num6 = " + num6);
+
+            Console.WriteLine("\nPrefix increment: num6 = " + --num6);
+
+            //4
+            Console.WriteLine("\nOperators ");
+
+            num5 += 146;
+            Console.WriteLine("After += 146, num5 = " + num5);
+            num5 -= 85;
+            Console.WriteLine("After -= 85, num5 = " + num5);
+            num5 *= 34; 
+            Console.WriteLine("After *= 34, num5 = " + num5);
+            num5 /= 53; 
+            Console.WriteLine("After /= 53, num5 = " + num5);
+            num5 %= 483;
+            Console.WriteLine("After %= 483, num5 = " + num5);
 
 
 
