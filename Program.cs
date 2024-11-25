@@ -1,75 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace discountCalculator
+namespace uppgift9
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-           Console.Write("Please enter the original price of the product: ");
-            string priceInput = Console.ReadLine();
-            if (!double.TryParse(priceInput, out double originalPrice) || originalPrice <= 0)
+            //1
+            int num1 = 10;
+            int num2 = 20;
+            int num3 = 30;
+            int num4 = num1;
+
+            //2
+            bool isTrue = true;
            
-            {
-                Console.WriteLine("Invalid price. Please enter a positive number.");
-                return;    
-            }
+            //3
+            // a)
+            bool resultAnd = isTrue && (num1 > num3 && num2 > num4);
+            Console.WriteLine($"Logical AND (isTrue && (num1 > num3 && num > num4)): \n{resultAnd}");
+            //b
+            bool resultOr = isTrue || (num1 < num3 || num2 > num4);
+            Console.WriteLine($"Logical OR (isTrue && (num1 > num3 && num > num4)): \n{resultAnd}");
+            //c
+            bool resultNot = !isTrue;
+            Console.WriteLine($"Logical NOT (!isTrue): \n{resultNot}");
+            Console.WriteLine();
+            //4
+            //a)
+            bool comparison1 = num1 > num3;
+            Console.WriteLine($"Is num1 greater than num3? \n{comparison1}");
+            //b)
+            bool comparison2 = num2 < num4;
+            Console.WriteLine($"Is num2 less than num4? \n{comparison2}");
+            //c)
+            bool comparison3 = num1 == num4;
+            Console.WriteLine($"Is num1 equal to num4? \n{comparison3}");
+            //d)
+            bool comparison4 = num2 != num3;
+            Console.WriteLine($"Is num2 equal to num3? \n{comparison4}");
+            Console.WriteLine();
 
-            Console.Write("Please enter the discount type (student, senior, none): ");
-            string discountType = Console.ReadLine().ToLower();
-            double discountPercentage;
-            switch (discountType)
+            //5
+            //a)
+            bool expression1 = (num1 > num3) && (num2 < num4);
+            //b
+            bool expression2 = (num1 < num3) || (num2 > num4);
 
-            {
+            Console.WriteLine($"Expression1 ((num1 > num3) && (num2 < num4)): {expression1}");
+            Console.WriteLine($"Expression2 ((num1 < num3) || (num2 > num4)): {expression2}");
 
-                case "student":
 
-                    discountPercentage = 0.15;
 
-                    break;
 
-                case "senior":
-
-                    discountPercentage = 0.20;
-
-                    break;
-
-                case "none":
-
-                    discountPercentage = 0.00;
-
-                    break;
-
-                default:
-
-                    Console.WriteLine("Invalid discount type! Please enter 'student', 'senior', or 'none'.");
-
-                    return; 
-            }
-
-            double discountAmount = originalPrice * discountPercentage;
-            double finalPrice = originalPrice - discountAmount;
-
-            Console.WriteLine($"Original Price: ${originalPrice:F2}");
-
-            Console.WriteLine($"Discount Type: {char.ToUpper(discountType[0]) + discountType.Substring(1)}");
-
-            Console.WriteLine($"Discount Amount: ${discountAmount:F2}");
-
-            Console.WriteLine($"Final Price: ${finalPrice:F2}");
-
-            if (finalPrice < 50)
-
-            {
-
-                Console.WriteLine("This is a great deal!");
-
-            }
+            Console.ReadLine();
         }
     }
 }
