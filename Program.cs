@@ -4,30 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace uppgift13
+namespace uppgift14
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter a number: ");
+            int num = 7;
+            int length = 5;
 
-            int number;
-            while (!int.TryParse(Console.ReadLine(), out number));
+            int[] multiplicationTable = new int[length];
+            for (int i = 0; i < length; i++)
             {
-                Console.WriteLine("Enter a valid integrer");
+                multiplicationTable[i] = (i + 1) * num;
             }
-            if (number % 2 == 0)
+            Console.WriteLine($"Multiplication table for {num}: ");
+            for (int i = 0; i < length; i++)
             {
-                Console.WriteLine($"The number {number} is even. ");
+                Console.WriteLine($"{num} x {i + 1} = {multiplicationTable[i]}");
             }
-            else
-            {
-                Console.WriteLine($"The number {number} is odd. ");
-            }
-
-
-          Console.ReadLine();
+                
+                Console.ReadLine();
         }
+
     }
 }
