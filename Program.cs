@@ -4,52 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace uppgift16
+namespace uppgift13
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int[] myNum = {45, 12, 78, 34, 89, 23};
-            Console.WriteLine("Original list: ");
-            for (int i = 0; i < myNum.Length; i++)
-            {
-                Console.WriteLine(myNum[i]);
-            }
-            
-            Console.WriteLine("\nSorted list: ");
-            Array.Sort(myNum);
-            foreach (int i in myNum)
-            {
-                Console.WriteLine(i);
-            }
-            Console.WriteLine("\nSorted list in reverse: ");
-            
-            for (int i = myNum.Length - 1; i >= 0; i--)
-            {
-                Console.WriteLine(myNum[i]);
-            }
-            List<int> numList = new List<int>(myNum); 
-            numList.Remove(78); 
+            Console.WriteLine("Enter a number: ");
 
-            myNum = numList.ToArray();
-
-            Console.WriteLine("\nArray after removing 78:");
-            foreach (int num in myNum)
+            int number;
+            while (!int.TryParse(Console.ReadLine(), out number));
             {
-                Console.WriteLine(num);
+                Console.WriteLine("Enter a valid integrer");
             }
-            int index = Array.IndexOf(myNum, 34);
-            if (index != -1)
+            if (number % 2 == 0)
             {
-                Console.WriteLine($"\nThe index of 34 is: {index}");
+                Console.WriteLine($"The number {number} is even. ");
             }
             else
             {
-                Console.WriteLine("\nThe number 34 doesn't exist in the array");
+                Console.WriteLine($"The number {number} is odd. ");
             }
 
-            Console.ReadLine();
+
+          Console.ReadLine();
         }
     }
 }
