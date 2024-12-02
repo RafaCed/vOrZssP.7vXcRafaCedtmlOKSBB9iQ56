@@ -1,32 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace uppgift18
+namespace uppgift19
 {
     internal class Program
     {
-        static int TriangleArea(int x, int y)
-        {
-            return x * y / 2;
-        }
         static void Main(string[] args)
         {
-            Console.Write("Enter the width of the triangle: ");
-            int width = Convert.ToInt32(Console.ReadLine());
+            int[] numbers = { 0, 1, 2, 3, 4, 5, };
+            int sum = SumOfNumbers(numbers);
 
-            Console.Write("Enter the height of the triangle: ");
-            int height = Convert.ToInt32(Console.ReadLine());  
-
-            int area = TriangleArea(width, height);
-
-            Console.WriteLine($"The area of the trianlge is: {area}");
+            Console.WriteLine($"Array length: {numbers.Length}");
+            if (sum > -1)
+            {
+                Console.WriteLine($"Total: {sum}");
+            }
+            else
+            {
+                Console.WriteLine("Can't add up an empty array. ");
+            }
+            if (numbers.Length == 0 || Array.Exists(numbers, element => element < 0))
+            {
+                Console.WriteLine("Can't add up an empty array. ");
+            }
             Console.ReadLine();
         }
-        
-        
+      
+        static int SumOfNumbers(int[] array)
+        { 
+        int sum = 0;
+            foreach (int number in array)
+            {
+                sum += number;
+            }
+            return sum;
+           
+        }
     }
 }
