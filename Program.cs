@@ -3,29 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Win32;
 
-namespace uppgift20
+namespace uppgift21
 {
-    public class Circle
-    { 
-    public double Radius { get; set; }
-        public Circle(double radius) 
-        {
-        Radius = radius;
-        }
-        public double CalculateArea()
-            { return Math.PI * Radius * Radius; }
-    }
     internal class Program
     {
         static void Main(string[] args)
         {
-            Circle circle = new Circle (1.5);
-            double area = circle.CalculateArea();
+            
+            Console.Write("Enter your age: ");
+            string ageInput = Console.ReadLine();
+            int age = Convert.ToInt32(ageInput);
 
-            Console.WriteLine(area);
+            if (age > 18)
+            {
+                Console.WriteLine("Over 18 ");
+            }
+            else if (age > 30) 
+            {
+                Console.WriteLine("Over 30 ");
+            }
+            else if (age > 50)
+            {
+                Console.WriteLine("Over 50 ");
+            }
+            else if (age < 18)
+            {
+                Console.WriteLine("Under 18 ");
+            }
+
             Console.ReadLine();
         }
-
     }
 }
