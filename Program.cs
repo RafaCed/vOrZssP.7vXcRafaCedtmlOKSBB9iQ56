@@ -3,35 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Win32;
 
-namespace uppgift21
+namespace uppgift22
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            int[] numbers = { 1, 2, 3, 4, 5, };
+            int sum = numbers.Sum();
             
-            Console.Write("Enter your age: ");
-            string ageInput = Console.ReadLine();
-            int age = Convert.ToInt32(ageInput);
-
-            if (age > 18)
-            {
-                Console.WriteLine("Over 18 ");
-            }
-            else if (age > 30) 
-            {
-                Console.WriteLine("Over 30 ");
-            }
-            else if (age > 50)
-            {
-                Console.WriteLine("Over 50 ");
-            }
-            else if (age < 18)
-            {
-                Console.WriteLine("Under 18 ");
-            }
+            Console.WriteLine("Sum of numbers: " + sum);
 
             Console.ReadLine();
         }
