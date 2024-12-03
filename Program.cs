@@ -4,40 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace uppgift19
+namespace uppgift20
 {
+    public class Circle
+    { 
+    public double Radius { get; set; }
+        public Circle(double radius) 
+        {
+        Radius = radius;
+        }
+        public double CalculateArea()
+            { return Math.PI * Radius * Radius; }
+    }
     internal class Program
     {
         static void Main(string[] args)
         {
-            int[] numbers = { 0, 1, 2, 3, 4, 5, };
-            int sum = SumOfNumbers(numbers);
+            Circle circle = new Circle (1.5);
+            double area = circle.CalculateArea();
 
-            Console.WriteLine($"Array length: {numbers.Length}");
-            if (sum > -1)
-            {
-                Console.WriteLine($"Total: {sum}");
-            }
-            else
-            {
-                Console.WriteLine("Can't add up an empty array. ");
-            }
-            if (numbers.Length == 0 || Array.Exists(numbers, element => element < 0))
-            {
-                Console.WriteLine("Can't add up an empty array. ");
-            }
+            Console.WriteLine(area);
             Console.ReadLine();
         }
-      
-        static int SumOfNumbers(int[] array)
-        { 
-        int sum = 0;
-            foreach (int number in array)
-            {
-                sum += number;
-            }
-            return sum;
-           
-        }
+
     }
 }
