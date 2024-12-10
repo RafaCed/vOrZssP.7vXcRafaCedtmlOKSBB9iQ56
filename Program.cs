@@ -1,94 +1,108 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
-namespace uppgift24
+namespace uppgift25
 {
-
-    public class Product
+    class Inventory
     {
-        // Private fiels
-        private string name;
-        private double price;
-        private int stock;
+        private List<string> items;
+        private Dictionary<string, (double price, int stock)> itemDetails;
 
-        //Constructor
-        public Product(string name, double price, int stock)
+        public Inventory()
         {
-            this.name = name;
-            this.price = price;
-            this.stock = stock;
+            items = new List<string>();
+            itemDetails = new Dictionary<string, (double price, int stock)>();
+        }
+        public void AddItem(string productName, double price, int stock)
+        {
+            items.Add(productName);
+            itemDetails[productName] = (price, stock);
+        }
+        public void RemoveItem(string productName)
+        {
+            if (items.Contains(productName))
+            {
+                items.Remove(productName);
+                itemDetails.Remove(productName);
+            }
+        }
+        public void UpdateStock(string productName, int newStock)
+        {
+            if (itemDetails.ContainsKey(productName))
+            {
+                var details = itemDetails[productName];
+                itemDetails[productName] = (details.price, newStock);
+            }
+        }
+        public void PrintItems()
+        {
+            Console.WriteLine("Inventory: ");
+            foreach ( var item in items)
+            {
+                var details = itemDetails[item];
+                Console.WriteLine($"Product: {item}, Price: {details.price}, Stock: {details.stock}");
+            }
+        }
+        public void FindMostExpensiveItem()
+        {
+            string mostExpensive = null;
+            double highestPrice = 0;
 
+            foreach (var item in items)
+            {
+            var details = itemDetails[item];
+            if (details.price > highestPrice) 
+            {
+                highestPrice = details.price;
+                mostExpensive = item;
+            }
+           }
+            if (mostExpensive != null) 
+            {
+                Console.WriteLine($"The most expensive item is: {mostExpensive} with price: {highestPrice}"); 
+            }
         }
-        public void SetName(string name)
+        public void TotalInventoryValue()
         { 
-            this.name = name;
-        }
-        public string GetName()
-        { 
-        return this.name;
-        }
-        public void SetPrice(double price) 
-        { 
-        this.price = price;
-        }
-        public double GetPrice()
-        { 
-        return price;
-        }
-        public void SetQuantity(int stock)
-        {
-            this.stock = stock;
-        }
-        public int GetQuantity()
-        { 
-        return stock;
-        }
-        public string GetProductsDetails()
-        { 
-        return $"Product name: {name}, Price: {price}, Quantity: {stock}";
-        }
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
+            double totalValue = 0;
 
+            foreach (var item in items)
+            {
+                var details = itemDetails[item];
+                double itemValue = details.price * details.stock;
+                totalValue += itemValue;
+                Console.WriteLine($"Total value for {item}: {itemValue}");
+            }
+            Console.WriteLine($"Total inventory value: {totalValue}");
         }
-        public double Price
-        {
-            get { return price; }
-            set { price = value; }
-        }
-        public int Stock
-        {
-            get { return stock; }
-            set { stock = value; }
-        }
-
-        public void DisplayProductInfo()
-        {
-            Console.WriteLine($"Product Name: {name}");
-            Console.WriteLine($"Price: {price:C}");
-            Console.WriteLine($"Stock : {stock}");
-        }
-
         internal class Program
         {
             static void Main(string[] args)
             {
-                Product product = new Product("Phone", 599, 5);
-                Console.WriteLine(product.GetProductsDetails());
+                Inventory inventory = new Inventory();
 
-                product.SetName("Laptop");
-                product.SetPrice(999.99);
-                product.SetQuantity(10);
+                inventory.AddItem("Laptop", 1200.50, 7);
 
-                Console.WriteLine(product.GetProductsDetails());
+                inventory.AddItem("Smartphone", 799.99, 12);
+
+                inventory.AddItem("Tablet", 399.99, 15);
+
+
+                inventory.PrintItems();
+
+                inventory.UpdateStock("Laptop", 5);
+
+                inventory.RemoveItem("Tablet");
                 
-                
-                
+                inventory.FindMostExpensiveItem();
+
+                inventory.TotalInventoryValue();
+
                 Console.ReadLine();
             }
         }
