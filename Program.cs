@@ -3,35 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Win32;
 
-namespace uppgift15
+namespace uppgift23._1
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int[] numbers = { 10, 20, 5, 30, 25 };
-            int max = int.MinValue;
+            int number;
+            
+            Console.Write("Enter a number: ");
+            string input = Console.ReadLine();
 
-            for (int i = 0; i < numbers.Length; i++)
+            if (TryParseInt(input, out number))
             {
-                if (numbers[i] > max)
-                {
-                    max = numbers[i];
-                }
+                Console.WriteLine($"Converted number: {number}");
             }
-
-            /* or using linq
-                using System.Linq;
-             int[] numbers = {10, 20, 5, 30, 25};
-
-             int max = numbers.Max();
-
-                 Console.WriteLine($"The max value in the array is: {max}");  */
-
-            Console.WriteLine($"The maximum value in the array is: {max}");
-
-            Console.ReadLine();
+            else
+            {
+                Console.WriteLine("Failed");
+            }
+        }
+        static bool TryParseInt(string input, out int result)
+        {
+            try
+            {
+                result = Convert.ToInt32(input);
+                return true;
+            }
+            catch (Exception e)
+            {
+                result = 0;
+                return false;
+            }
+            
         }
     }
 }
