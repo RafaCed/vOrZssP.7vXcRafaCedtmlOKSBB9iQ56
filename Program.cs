@@ -3,41 +3,94 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Win32;
 
-namespace uppgift23._1
+namespace uppgift24
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            int number;
-            
-            Console.Write("Enter a number: ");
-            string input = Console.ReadLine();
 
-            if (TryParseInt(input, out number))
-            {
-                Console.WriteLine($"Converted number: {number}");
-            }
-            else
-            {
-                Console.WriteLine("Failed");
-            }
-        }
-        static bool TryParseInt(string input, out int result)
+    public class Product
+    {
+        // Private fiels
+        private string name;
+        private double price;
+        private int stock;
+
+        //Constructor
+        public Product(string name, double price, int stock)
         {
-            try
+            this.name = name;
+            this.price = price;
+            this.stock = stock;
+
+        }
+        public void SetName(string name)
+        { 
+            this.name = name;
+        }
+        public string GetName()
+        { 
+        return this.name;
+        }
+        public void SetPrice(double price) 
+        { 
+        this.price = price;
+        }
+        public double GetPrice()
+        { 
+        return price;
+        }
+        public void SetQuantity(int stock)
+        {
+            this.stock = stock;
+        }
+        public int GetQuantity()
+        { 
+        return stock;
+        }
+        public string GetProductsDetails()
+        { 
+        return $"Product name: {name}, Price: {price}, Quantity: {stock}";
+        }
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+
+        }
+        public double Price
+        {
+            get { return price; }
+            set { price = value; }
+        }
+        public int Stock
+        {
+            get { return stock; }
+            set { stock = value; }
+        }
+
+        public void DisplayProductInfo()
+        {
+            Console.WriteLine($"Product Name: {name}");
+            Console.WriteLine($"Price: {price:C}");
+            Console.WriteLine($"Stock : {stock}");
+        }
+
+        internal class Program
+        {
+            static void Main(string[] args)
             {
-                result = Convert.ToInt32(input);
-                return true;
+                Product product = new Product("Phone", 599, 5);
+                Console.WriteLine(product.GetProductsDetails());
+
+                product.SetName("Laptop");
+                product.SetPrice(999.99);
+                product.SetQuantity(10);
+
+                Console.WriteLine(product.GetProductsDetails());
+                
+                
+                
+                Console.ReadLine();
             }
-            catch (Exception e)
-            {
-                result = 0;
-                return false;
-            }
-            
         }
     }
 }
