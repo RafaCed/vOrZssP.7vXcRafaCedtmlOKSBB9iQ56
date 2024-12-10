@@ -1,109 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 
-namespace uppgift25
+namespace uppgift26
 {
-    class Inventory
+    class Calculator
     {
-        private List<string> items;
-        private Dictionary<string, (double price, int stock)> itemDetails;
-
-        public Inventory()
+        public double Divide(int numerator, int denominator)
         {
-            items = new List<string>();
-            itemDetails = new Dictionary<string, (double price, int stock)>();
-        }
-        public void AddItem(string productName, double price, int stock)
-        {
-            items.Add(productName);
-            itemDetails[productName] = (price, stock);
-        }
-        public void RemoveItem(string productName)
-        {
-            if (items.Contains(productName))
+            try
             {
-                items.Remove(productName);
-                itemDetails.Remove(productName);
+                return (double)numerator / denominator;
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("Error: Division by zero is not allowed");
+                return 0.0;
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine($"Unexpected error occurred: {ex.Message}");
+                return 0.0;
             }
         }
-        public void UpdateStock(string productName, int newStock)
+        public int ParseInput(string input)
         {
-            if (itemDetails.ContainsKey(productName))
+            try
             {
-                var details = itemDetails[productName];
-                itemDetails[productName] = (details.price, newStock);
+                return int.Parse(input);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid input. Please enter a numeric value. ");
+                return -1;
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("The number is too large or too small.");
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected error occurred: {ex.Message}");
+                return -1;
             }
         }
-        public void PrintItems()
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
         {
-            Console.WriteLine("Inventory: ");
-            foreach ( var item in items)
+            Calculator calculator = new Calculator();
+            try
             {
-                var details = itemDetails[item];
-                Console.WriteLine($"Product: {item}, Price: {details.price}, Stock: {details.stock}");
+                Console.Write("Enter a numerator: ");
+                string numeratorInput = Console.ReadLine();
+                int numerator = calculator.ParseInput(numeratorInput);
+
+                if (numerator == -1)
+                { return; }
+
+                Console.Write("Enter a denominator: ");
+                string denominatorInput = Console.ReadLine();
+                int denominator = calculator.ParseInput(denominatorInput);
+
+                if (denominator == -1)
+                { return; }
+
+                double result = calculator.Divide(numerator, denominator);
+                Console.WriteLine($"Result: {result}");
             }
-        }
-        public void FindMostExpensiveItem()
-        {
-            string mostExpensive = null;
-            double highestPrice = 0;
-
-            foreach (var item in items)
-            {
-            var details = itemDetails[item];
-            if (details.price > highestPrice) 
-            {
-                highestPrice = details.price;
-                mostExpensive = item;
-            }
-           }
-            if (mostExpensive != null) 
-            {
-                Console.WriteLine($"The most expensive item is: {mostExpensive} with price: {highestPrice}"); 
-            }
-        }
-        public void TotalInventoryValue()
-        { 
-            double totalValue = 0;
-
-            foreach (var item in items)
-            {
-                var details = itemDetails[item];
-                double itemValue = details.price * details.stock;
-                totalValue += itemValue;
-                Console.WriteLine($"Total value for {item}: {itemValue}");
-            }
-            Console.WriteLine($"Total inventory value: {totalValue}");
-        }
-        internal class Program
-        {
-            static void Main(string[] args)
-            {
-                Inventory inventory = new Inventory();
-
-                inventory.AddItem("Laptop", 1200.50, 7);
-
-                inventory.AddItem("Smartphone", 799.99, 12);
-
-                inventory.AddItem("Tablet", 399.99, 15);
-
-
-                inventory.PrintItems();
-
-                inventory.UpdateStock("Laptop", 5);
-
-                inventory.RemoveItem("Tablet");
-                
-                inventory.FindMostExpensiveItem();
-
-                inventory.TotalInventoryValue();
-
-                Console.ReadLine();
+            catch (Exception ex) 
+            { 
+                Console.WriteLine($"Unexpected error occurred in the main method. {ex.Message}");
             }
         }
     }
